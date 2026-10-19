@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rpx-kit"
+version = "0.1.0"
+description = "Toolkit for Ren'Py RPA 3.0 archives" 
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+  { name = "Padorublad3"},
+]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+rpx-kit = "rpx_kit.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rpx_kit"]
+
