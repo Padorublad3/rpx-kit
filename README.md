@@ -20,7 +20,7 @@ A toolkit for extracting or viewing only RPA-3.0 archives made with Renpy
 
 Via pip
 ```bash
-pip install https://github.com/Padorublad3/rpx-kit.git
+pip install git+https://github.com/Padorublad3/rpx-kit.git
 ```
 
 
