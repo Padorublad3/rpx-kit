@@ -4,7 +4,7 @@
 A toolkit for extracting or viewing only RPA-3.0 archives made with Renpy
 
 
-## ✨Features
+## Features
 **Safe Unpickling**. Uses a custom SafeUnpickler that blocks all external imports during deserialization.
 
 **Zero Dependencies**.
@@ -51,3 +51,23 @@ Extract only PNG and JPG files to a folder:
 ```bash
 rpx-kit mygame/archive.rpa -m "*.png" -m "*.jpg" -o destination_folder
 ```
+## Mask Cheat Sheet
+
+Masks use standard shell-style patterns (`fnmatch`). Remember to wrap them in quotes!
+
+| Pattern | Meaning | Example Match |
+| :--- | :--- | :--- |
+| `*` | Matches **any sequence** of characters (including none) | `*.png` → `image.png`, `bg/day.png` |
+| `?` | Matches exactly **one** character | `img?.png` → `img1.png`, but NOT `img10.png` |
+| `[abc]` | Matches **one** char from the set | `file[123].txt` → `file1.txt`, `file2.txt` |
+| `[a-z]` | Matches one char in a **range** | `letter[a-e].rpyc` → `lettera.rpyc` |
+| `[!abc]` | Matches one char **NOT** in the set | `img[!0-9].png` → `imgA.png`, but NOT `img1.png` |
+
+##  Tips:
+1. **Extensions:** Always start with `*.` for extensions.
+   ✅ `-m "*.jpg"` 
+   ❌ `-m ".jpg"` (looks for a file literally named `.jpg`)
+2. **Paths vs Names:** Masks work on both full paths and filenames.
+   - `-m "images/*"` finds everything inside the `images/` folder.
+   - `-m "bg_*"` finds any file starting with `bg_`, regardless of its folder.
+3. **OR Logic:** Multiple `-m` flags are combined with OR.
