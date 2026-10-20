@@ -71,3 +71,22 @@ Masks use standard shell-style patterns (`fnmatch`). Remember to wrap them in qu
    - `-m "images/*"` finds everything inside the `images/` folder.
    - `-m "bg_*"` finds any file starting with `bg_`, regardless of its folder.
 3. **OR Logic:** Multiple `-m` flags are combined with OR.
+
+---
+
+##  Disclaimer
+
+This program is intended for people who have the legal rights or the consent of the target app authors to access or decompress the archive files. Any illegal or otherwise unintended usage of this software is discouraged and unsupported.
+
+## Credits
+
+This software was developed with orientation on Ren'Py's source code for working with RPA files. Credits for the development of the Ren'Py archive format belong to the contributors of the [Ren'Py project](https://github.com/renpy/renpy).
+
+## Support
+
+If this tool saved you time, consider supporting the developer:
+
+**ERC-20** ```0x8BA3456DBf94891881204ECB7a0f2fbdb6228D8A```
+
+
+**SOL**    ```H93HCZ1KqvnmAgDh9Enyi2xgUnXXXA5yb7uDxeshQJq```
