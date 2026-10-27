@@ -35,7 +35,7 @@ def scan_folder(path_obj:Path) -> list[Path]:
     return scan
 
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(prog="rpx-kit")
 
 
 parser.add_argument(
