@@ -4,14 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "rpx-kit"
-version = "0.1.0"
 description = "Toolkit for Ren'Py RPA 3.0 archives" 
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
   { name = "Padorublad3"},
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dependencies = []
 
 [project.scripts]
