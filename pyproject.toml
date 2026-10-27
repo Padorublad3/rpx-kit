@@ -12,6 +12,7 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = []
+dynamic = ["version"]
 
 [project.scripts]
 rpx-kit = "rpx_kit.cli:main"
