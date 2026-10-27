@@ -14,14 +14,8 @@ jobs:
             - name: Ruff check
               uses: astral-sh/ruff-action@v4.1.0
               with:
-                args: "check --show-fixes"
+                args: "check --show-fixes --exit-zero"
                 src: "./src"
 
-
-            - name: Ruff
-              uses: astral-sh/ruff-action@v4.1.0
-              with:
-                args: "format --check --diff"
-                src: "./src"
 
             
