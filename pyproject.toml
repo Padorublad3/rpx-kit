@@ -20,3 +20,6 @@ rpx-kit = "rpx_kit.cli:main"
 [tool.hatch.build.targets.wheel]
 packages = ["src/rpx_kit"]
 
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
