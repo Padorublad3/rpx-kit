@@ -1,36 +1,40 @@
 import argparse
-from pathlib import Path
-from .core import read_index,unpack_rpa,filter_index
-from time import time
-from rpx_kit import __version__
 import sys
+from pathlib import Path
+from time import time
+
+from rpx_kit import __version__
+
+from .core import filter_index, read_index, unpack_rpa
 
 
-def validate_input_path(path:str) -> list[Path]:
+def validate_input_path(path: str) -> list[Path]:
     path_obj = Path(path)
     if path_obj.is_file() and path_obj.suffix.lower() == ".rpa":
         return [path_obj]
     elif path_obj.exists() and path_obj.is_dir():
         result = scan_folder(path_obj)
         if not result:
-            print(f"Warning! No RPA archives found in {path}",file=sys.stderr)
+            print(f"Warning! No RPA archives found in {path}", file=sys.stderr)
             return []
         else:
             return result
     else:
-        print(f"Not a valid RPA file or directory: {path}",file=sys.stderr)
+        print(f"Not a valid RPA file or directory: {path}", file=sys.stderr)
         return []
 
 
-def validate_output_path(path:str) -> Path:
+def validate_output_path(path: str) -> Path:
     path_obj = Path(path)
     if path_obj.exists() and not path_obj.is_dir():
-        raise argparse.ArgumentTypeError(f"Output path exists but is not a directory: {path}")
+        raise argparse.ArgumentTypeError(
+            f"Output path exists but is not a directory: {path}"
+        )
     else:
         return path_obj
 
 
-def scan_folder(path_obj:Path) -> list[Path]:
+def scan_folder(path_obj: Path) -> list[Path]:
     scan = list(path_obj.rglob("*.rpa"))
     return scan
 
@@ -38,19 +42,11 @@ def scan_folder(path_obj:Path) -> list[Path]:
 parser = argparse.ArgumentParser(prog="rpx-kit")
 
 
-parser.add_argument(
-    "input_paths",
-    nargs="*",
-    help="Path to the RPA-3.0 archive"
-)
+parser.add_argument("input_paths", nargs="*", help="Path to the RPA-3.0 archive")
 
 
 parser.add_argument(
-    "-o",
-    "--output",
-    dest="output_path",
-    type=validate_output_path,
-    help="Output path"
+    "-o", "--output", dest="output_path", type=validate_output_path, help="Output path"
 )
 
 
@@ -58,26 +54,22 @@ parser.add_argument(
     "-l",
     "--list",
     action="store_true",
-    help="Prints a list of files inside the archive"
-
+    help="Prints a list of files inside the archive",
 )
 
 
 parser.add_argument(
- "-m",
- "--mask",
- action="append",
- dest = "masks",
- default=None,
- help="Filter by mask, can be repeated: -m '*.rpyc' -m '*.png'"
+    "-m",
+    "--mask",
+    action="append",
+    dest="masks",
+    default=None,
+    help="Filter by mask, can be repeated: -m '*.rpyc' -m '*.png'",
 )
 
 
 parser.add_argument(
-    "-v",
-    "--version",
-    action="version",
-    version=f"%(prog)s {__version__}"
+    "-v", "--version", action="version", version=f"%(prog)s {__version__}"
 )
 
 
@@ -91,17 +83,19 @@ def main():
         print(f"{len(archives)} archives found")
     else:
         raise argparse.ArgumentTypeError("No valid paths provided")
-    start_time = time()    
+    start_time = time()
     for archive in archives:
-        print(f"Processing {archive}, total size = {round(archive.stat().st_size /(1024 * 1024),2) } MB")
-        with open(archive,"rb") as file:
+        print(
+            f"Processing {archive}, total size = {round(archive.stat().st_size / (1024 * 1024), 2)} MB"
+        )
+        with open(archive, "rb") as file:
             try:
                 index = read_index(file)
             except Exception as e:
-                print(f"Skip {archive}, error: {e}",file=sys.stderr)
+                print(f"Skip {archive}, error: {e}", file=sys.stderr)
                 continue
             if args.masks:
-                index = filter_index(index,args.masks)
+                index = filter_index(index, args.masks)
                 if not index:
                     print(f"No files match the given mask in {archive}")
                     continue
@@ -112,12 +106,12 @@ def main():
                 if args.output_path is None:
                     parser.error("-o/--output is required when unpacking")
                 output_dir = args.output_path / archive.stem
-                output_dir.mkdir(parents=True,exist_ok=True)
-                total = unpack_rpa(file,index,output_dir)
-                
+                output_dir.mkdir(parents=True, exist_ok=True)
+                total = unpack_rpa(file, index, output_dir)
+
                 print(f"Done, {archive} processed")
                 print(f"Total files extracted: {total}")
-    end_time = time() 
+    end_time = time()
     print(f"Time taken: {end_time - start_time:.2f} seconds")
 
 
