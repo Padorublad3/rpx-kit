@@ -19,7 +19,7 @@ A toolkit for extracting or viewing only RPA-3.0 archives made with Renpy
 
 ## Installation
 > [!NOTE]
-> **Python >= 3.9** is required
+> **Python >= 3.11** is required
 
 Via pip
 ```bash
@@ -32,7 +32,7 @@ pip install git+https://github.com/Padorublad3/rpx-kit.git
 rpx-kit [-l | -o DIR] [-m PATTERN]... INPUT_PATH
 
 Arguments:
-  INPUT_PATH       Input .rpa archive file
+  INPUT_PATHS       Input .rpa archive(s) files or directory
 
 Options:
   -l, --list       Print list of files contained in the archive
@@ -53,6 +53,10 @@ rpx-kit mygame/archive.rpa -m "*.png" -m "*.jpg" -l > result.txt
 Extract only PNG and JPG files to a folder:
 ```bash
 rpx-kit mygame/archive.rpa -m "*.png" -m "*.jpg" -o destination_folder
+
+rpx-kit mygame/archive.rpa mygame/archive2.rpa -m "*.png" -m "*.jpg" -o destination_folder
+
+rpx-kit mygame -m "*.png" -m "*.jpg" -o destination_folder
 ```
 ## Mask Cheat Sheet
 
