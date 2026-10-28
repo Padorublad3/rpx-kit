@@ -1,8 +1,10 @@
 # RPX-KIT
 [![Pylint](https://github.com/Padorublad3/rpx-kit/actions/workflows/pylint.yml/badge.svg)](https://github.com/Padorublad3/rpx-kit/actions/workflows/pylint.yml)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![PyPI version](https://badge.fury.io/py/rpx-kit.svg)](https://pypi.org/project/rpx-kit/)
 [![Python >=3.11](https://img.shields.io/badge/python-≥3.11-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Boosty](https://img.shields.io/badge/Support%20me-Boosty-orange?style=flat&logo=boosty&logoColor=white)](https://boosty.to/cuteblad3)
 ## Description 
 A toolkit for extracting or viewing only RPA-3.0 archives made with Renpy
 
@@ -23,8 +25,13 @@ A toolkit for extracting or viewing only RPA-3.0 archives made with Renpy
 
 Via pip
 ```bash
+pip install rpx-kit
+```
+or
+```bash
 pip install git+https://github.com/Padorublad3/rpx-kit.git
 ```
+
 
 
 ## Usage
@@ -32,12 +39,13 @@ pip install git+https://github.com/Padorublad3/rpx-kit.git
 rpx-kit [-l | -o DIR] [-m PATTERN]... INPUT_PATH
 
 Arguments:
-  INPUT_PATHS       Input .rpa archive(s) files or directory
+  INPUT_PATHS       Input .rpa archive(s) files or directory, better wrap them with quotes
 
 Options:
   -l, --list       Print list of files contained in the archive
   -o, --output     Target directory for extraction (creates if missing)
   -m, --mask       Filter by fnmatch pattern (repeatable, e.g., -m "*.png")
+  -v, --version    Print current version
 ```
 
 
@@ -92,6 +100,14 @@ This software was developed with orientation on Ren'Py's source code for working
 ## Support
 
 If this tool saved you time, consider supporting the developer:
+
+
+<div align="left">
+  <a href="https://boosty.to/cuteblad3">
+    <img src="https://img.shields.io/badge/☕%20Support%20this%20project%20on%20Boosty-FB7A24?style=for-the-badge&logo=boosty&logoColor=white&labelColor=5C3D99&color=FB7A24" height="40" alt="Donate on Boosty">
+  </a>
+</div>
+
 
 **ERC-20** ```0x8BA3456DBf94891881204ECB7a0f2fbdb6228D8A```
 
